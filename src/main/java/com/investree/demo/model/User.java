@@ -29,8 +29,12 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user")
     private UserDetail userDetail;
 
-//    one to many transaksi
-    @OneToMany(mappedBy = "user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Transaksi> transaksi;
+//    one to many transaksi peminjam
+    @OneToMany(mappedBy = "userPeminjam")
+    private List<Transaksi> transaksiPeminjam;
+
+//    one to many transaksi meminjam
+    @OneToMany(mappedBy = "userMeminjam")
+    private List<Transaksi> transaksiMeminjam;
 
 }

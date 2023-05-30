@@ -24,6 +24,7 @@ public class PaymentHistory implements Serializable {
     private String buktiPembayaran;
 
 //    Many to one Transaksi
-    @ManyToOne(targetEntity = Transaksi.class, cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name="id_transaksi",referencedColumnName = "id")
     private Transaksi transaksi;
 }

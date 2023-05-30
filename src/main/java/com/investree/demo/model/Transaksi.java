@@ -28,17 +28,17 @@ public class Transaksi implements Serializable {
     private String status;
 
 //    many to one user peminjam
-    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_peminjam",referencedColumnName = "id")
     private User userPeminjam;
 
 //    many to one user meminjam
-    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="id_meminjam", referencedColumnName = "id")
     private User userMeminjam;
 
 //    One to many payment_history
-    @OneToMany(mappedBy = "transaksi", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "transaksi")
     private List<PaymentHistory> paymentHistory;
 
 }
