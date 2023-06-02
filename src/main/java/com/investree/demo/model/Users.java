@@ -1,6 +1,5 @@
 package com.investree.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,8 +7,8 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="user")
-public class User implements Serializable {
+@Table(name="users")
+public class Users implements Serializable {
 
     @Id
     @Column(name="id")
