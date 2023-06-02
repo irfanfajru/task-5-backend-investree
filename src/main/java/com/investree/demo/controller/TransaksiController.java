@@ -23,10 +23,9 @@ public class TransaksiController {
     TransaksiRepo transaksiRepo;
     @PostMapping("")
     public ResponseEntity<Map> save(
-            @RequestBody Transaksi objModel,
-            @RequestBody Long idPeminjam,
-            @RequestBody Long idMeminjam){
-        Map obj = transaksiService.save(objModel, idPeminjam,idMeminjam);
+            @RequestBody Transaksi objModel){
+        System.out.println(objModel);
+        Map obj = transaksiService.save(objModel);
         return new ResponseEntity<Map>(obj, HttpStatus.OK);
     }
 

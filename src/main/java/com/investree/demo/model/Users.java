@@ -29,11 +29,11 @@ public class Users implements Serializable {
     private UserDetail userDetail;
 
 //    one to many transaksi peminjam
-    @OneToMany(mappedBy = "userPeminjam")
+    @OneToMany(mappedBy = "peminjam")
     private List<Transaksi> transaksiPeminjam;
 
 //    one to many transaksi meminjam
-    @OneToMany(mappedBy = "userMeminjam")
+    @OneToMany(mappedBy = "meminjam")
     private List<Transaksi> transaksiMeminjam;
 
 }
