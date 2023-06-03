@@ -1,9 +1,9 @@
 package com.investree.demo.view.impl;
 
 import com.investree.demo.model.Transaksi;
-import com.investree.demo.model.User;
+import com.investree.demo.model.oauth.User;
 import com.investree.demo.repository.TransaksiRepo;
-import com.investree.demo.repository.UserRepo;
+import com.investree.demo.repository.oauth.UserRepo;
 import com.investree.demo.view.TransaksiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

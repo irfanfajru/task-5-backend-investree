@@ -1,6 +1,7 @@
 package com.investree.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.investree.demo.model.oauth.User;
 import lombok.Data;
 
 import javax.persistence.*;

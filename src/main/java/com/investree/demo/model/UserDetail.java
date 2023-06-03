@@ -1,5 +1,6 @@
 package com.investree.demo.model;
 
+import com.investree.demo.model.oauth.User;
 import lombok.Data;
 
 import javax.persistence.*;
