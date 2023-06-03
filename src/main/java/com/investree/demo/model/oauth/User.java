@@ -162,6 +162,7 @@ public class User implements UserDetails, Serializable {
         this.isActive = enabled;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return isActive;
