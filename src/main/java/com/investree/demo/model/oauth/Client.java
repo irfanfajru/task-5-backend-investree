@@ -1,6 +1,7 @@
 package com.investree.demo.model.oauth;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.util.StringUtils;
@@ -35,6 +36,7 @@ public class Client implements ClientDetails, Serializable {
     @Column(name = "refresh_token_expired")
     private Integer refreshTokenValiditySeconds;
 
+    @JsonIgnore
     @ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "oauth_client_role",

@@ -27,6 +27,7 @@ public class Role implements GrantedAuthority {
 
     private String type;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RolePath> rolePaths;
 

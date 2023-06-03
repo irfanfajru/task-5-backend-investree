@@ -39,19 +39,21 @@ public class User implements UserDetails, Serializable {
     @Column(name="expired_verify_token")
     private Date expiredVerifyToken;
 
+    @JsonIgnore
     @Column(name = "otp",nullable = true)
     private String otp;
 
+    @JsonIgnore
     @Column(name="expired_otp")
     private Date otpExpiredDate;
 
     @JsonIgnore
     @Column(name="is_active", nullable = false)
-    private Boolean isActive;
+    private boolean isActive = true;
 
     @JsonIgnore
     @Column(name = "not_expired")
-    private Boolean accountNonExpired = true;
+    private boolean accountNonExpired = true;
 
     @JsonIgnore
     @Column(name = "not_locked")
@@ -61,8 +63,7 @@ public class User implements UserDetails, Serializable {
     @Column(name = "credential_not_expired")
     private boolean credentialsNonExpired = true;
 
-    private List<Role> roles = new ArrayList<>();
-
+    @JsonIgnore
     @ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "oauth_user_role",
@@ -73,6 +74,7 @@ public class User implements UserDetails, Serializable {
                     @JoinColumn(name = "role_id")
             }
     )
+    private List<Role> roles = new ArrayList<>();
 
     //    one to one user detail
     @JsonIgnore
@@ -106,6 +108,7 @@ public class User implements UserDetails, Serializable {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
     }
