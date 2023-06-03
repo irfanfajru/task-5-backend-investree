@@ -1,5 +1,6 @@
 package com.investree.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,18 +28,19 @@ public class Transaksi implements Serializable {
     @Column(name="status",nullable = false)
     private String status;
 
-//    many to one user peminjam
+    //    many to one user peminjam
     @ManyToOne
     @JoinColumn(name = "id_peminjam",referencedColumnName = "id")
-    private User userPeminjam;
+    private User peminjam;
 
-//    many to one user meminjam
+    //    many to one user meminjam
     @ManyToOne
     @JoinColumn(name="id_meminjam", referencedColumnName = "id")
-    private User userMeminjam;
+    private User meminjam;
 
-//    One to many payment_history
-    @OneToMany(mappedBy = "transaksi")
+    //    One to many payment_history
+    @JsonIgnore
+    @OneToMany(mappedBy = "transaksi",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PaymentHistory> paymentHistory;
 
 }

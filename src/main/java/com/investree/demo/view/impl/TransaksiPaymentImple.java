@@ -22,36 +22,35 @@ public class TransaksiPaymentImple implements TransaksiService {
     public UserRepo userRepo;
 
     @Override
-    public Map save(Transaksi transaksi, Long idPeminjam,Long idMeminjam){
-    Map map = new HashMap();
-    try{
-        User userPeminjam = userRepo.getById(idPeminjam);
-        User userMeminjam = userRepo.getById(idMeminjam);
+    public Map save(Transaksi transaksi){
+        Map map = new HashMap();
+        try{
+            User peminjam = userRepo.getById(transaksi.getPeminjam().getId());
+            User meminjam = userRepo.getById(transaksi.getMeminjam().getId());
+            if(peminjam ==null){
+                map.put("code","404");
+                map.put("status","failed, user peminjam tidak ditemukan");
+                return map;
+            }
 
-        if(userPeminjam==null){
-            map.put("code","404");
-            map.put("status","failed, user peminjam tidak ditemukan");
+            if(meminjam ==null){
+                map.put("code","404");
+                map.put("status","failed, user meminjam tidak ditemukan");
+                return map;
+            }
+            transaksi.setPeminjam(peminjam);
+            transaksi.setMeminjam(meminjam);
+            Transaksi obj = transaksiRepo.save(transaksi);
+            map.put("data",obj);
+            map.put("code","200");
+            map.put("status","success");
+            return map;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            map.put("code","500");
+            map.put("status","failed");
             return map;
         }
-
-        if(userMeminjam==null){
-            map.put("code","404");
-            map.put("status","failed, user meminjam tidak ditemukan");
-            return map;
-        }
-
-        transaksi.setUserPeminjam(userPeminjam);
-        transaksi.setUserMeminjam(userMeminjam);
-        Transaksi obj = transaksiRepo.save(transaksi);
-        map.put("data",obj);
-        map.put("code","200");
-        map.put("status","success");
-        return map;
-    }catch(Exception e){
-        map.put("code","500");
-        map.put("status","failed");
-        return map;
-    }
 
     }
 

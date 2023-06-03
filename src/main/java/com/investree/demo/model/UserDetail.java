@@ -19,6 +19,7 @@ public class UserDetail implements Serializable {
     @Column(name="alamat",nullable = false,columnDefinition = "TEXT")
     private String alamat;
 
+    //    one to one user
     @OneToOne
     @JoinColumn(name="id_user",referencedColumnName = "id")
     private User user;

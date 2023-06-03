@@ -1,5 +1,6 @@
 package com.investree.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,7 +24,7 @@ public class PaymentHistory implements Serializable {
     @Column(name="bukti_pembayaran",nullable = false)
     private String buktiPembayaran;
 
-//    Many to one Transaksi
+    //    Many to one Transaksi
     @ManyToOne
     @JoinColumn(name="id_transaksi",referencedColumnName = "id")
     private Transaksi transaksi;

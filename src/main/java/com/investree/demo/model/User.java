@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User implements Serializable {
 
     @Id
@@ -19,22 +19,27 @@ public class User implements Serializable {
     @Column(name="username", unique=true)
     private String username;
 
+    @JsonIgnore
     @Column(name="password",nullable = false)
     private String password;
 
+    @JsonIgnore
     @Column(name="is_active", nullable = false)
     private Boolean isActive;
 
-//    one to one user detail
-    @OneToOne(mappedBy = "user")
+    //    one to one user detail
+    @JsonIgnore
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private UserDetail userDetail;
 
-//    one to many transaksi peminjam
-    @OneToMany(mappedBy = "userPeminjam")
+    //    one to many transaksi peminjam
+    @JsonIgnore
+    @OneToMany(mappedBy = "peminjam",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Transaksi> transaksiPeminjam;
 
-//    one to many transaksi meminjam
-    @OneToMany(mappedBy = "userMeminjam")
+    //    one to many transaksi meminjam
+    @JsonIgnore
+    @OneToMany(mappedBy = "meminjam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Transaksi> transaksiMeminjam;
 
 }
