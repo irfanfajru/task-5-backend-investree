@@ -31,12 +31,12 @@ public class Transaksi implements Serializable {
 //    many to one user peminjam
     @ManyToOne
     @JoinColumn(name = "id_peminjam",referencedColumnName = "id")
-    private Users peminjam;
+    private User peminjam;
 
 //    many to one user meminjam
     @ManyToOne
     @JoinColumn(name="id_meminjam", referencedColumnName = "id")
-    private Users meminjam;
+    private User meminjam;
 
 //    One to many payment_history
     @JsonIgnore

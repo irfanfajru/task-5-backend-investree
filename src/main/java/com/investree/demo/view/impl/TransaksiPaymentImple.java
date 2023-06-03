@@ -1,7 +1,7 @@
 package com.investree.demo.view.impl;
 
 import com.investree.demo.model.Transaksi;
-import com.investree.demo.model.Users;
+import com.investree.demo.model.User;
 import com.investree.demo.repository.TransaksiRepo;
 import com.investree.demo.repository.UserRepo;
 import com.investree.demo.view.TransaksiService;
@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -26,8 +25,8 @@ public class TransaksiPaymentImple implements TransaksiService {
     public Map save(Transaksi transaksi){
     Map map = new HashMap();
     try{
-        Users peminjam = userRepo.getById(transaksi.getPeminjam().getId());
-        Users meminjam = userRepo.getById(transaksi.getMeminjam().getId());
+        User peminjam = userRepo.getById(transaksi.getPeminjam().getId());
+        User meminjam = userRepo.getById(transaksi.getMeminjam().getId());
         if(peminjam ==null){
             map.put("code","404");
             map.put("status","failed, user peminjam tidak ditemukan");
