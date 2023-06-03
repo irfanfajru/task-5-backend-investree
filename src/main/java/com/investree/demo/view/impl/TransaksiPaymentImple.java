@@ -39,7 +39,8 @@ public class TransaksiPaymentImple implements TransaksiService {
             map.put("status","failed, user meminjam tidak ditemukan");
             return map;
         }
-
+        transaksi.setPeminjam(peminjam);
+        transaksi.setMeminjam(meminjam);
         Transaksi obj = transaksiRepo.save(transaksi);
         map.put("data",obj);
         map.put("code","200");

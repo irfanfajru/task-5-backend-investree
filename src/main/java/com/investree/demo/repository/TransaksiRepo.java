@@ -17,9 +17,8 @@ public interface TransaksiRepo extends PagingAndSortingRepository<Transaksi,Long
     @Query("select c from Transaksi c where c.id = :id")
     public Transaksi getById(@Param("id") Long id);
 
-    @Query("select c from Transaksi c where c.status like :status")
-    public Page<Transaksi> getByStatusLike(String status, Pageable pageable);
+    public Page<Transaksi> findByStatusLike(String status, Pageable pageable);
 
     @Query("select c from Transaksi c")
-    public Page<Transaksi> getAllData(Pageable pageable);
+    public Page<Transaksi> findAll(Pageable pageable);
 }

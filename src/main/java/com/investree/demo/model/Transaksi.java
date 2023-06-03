@@ -1,5 +1,6 @@
 package com.investree.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -38,7 +39,8 @@ public class Transaksi implements Serializable {
     private Users meminjam;
 
 //    One to many payment_history
-    @OneToMany(mappedBy = "transaksi")
+    @JsonIgnore
+    @OneToMany(mappedBy = "transaksi",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PaymentHistory> paymentHistory;
 
 }

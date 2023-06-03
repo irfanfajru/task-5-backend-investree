@@ -1,5 +1,6 @@
 package com.investree.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class Users implements Serializable {
     @Column(name="username", unique=true)
     private String username;
 
+    @JsonIgnore
     @Column(name="password",nullable = false)
     private String password;
 
@@ -25,15 +27,18 @@ public class Users implements Serializable {
     private Boolean isActive;
 
 //    one to one user detail
-    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private UserDetail userDetail;
 
 //    one to many transaksi peminjam
-    @OneToMany(mappedBy = "peminjam")
+    @JsonIgnore
+    @OneToMany(mappedBy = "peminjam",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Transaksi> transaksiPeminjam;
 
 //    one to many transaksi meminjam
-    @OneToMany(mappedBy = "meminjam")
+    @JsonIgnore
+    @OneToMany(mappedBy = "meminjam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Transaksi> transaksiMeminjam;
 
 }

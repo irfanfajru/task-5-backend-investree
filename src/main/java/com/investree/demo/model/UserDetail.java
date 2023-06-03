@@ -1,5 +1,6 @@
 package com.investree.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class UserDetail implements Serializable {
     @Column(name="alamat",nullable = false,columnDefinition = "TEXT")
     private String alamat;
 
+//    one to one user
     @OneToOne
     @JoinColumn(name="id_user",referencedColumnName = "id")
     private Users user;
