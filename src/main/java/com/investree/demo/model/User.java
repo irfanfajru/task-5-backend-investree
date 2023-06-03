@@ -23,6 +23,7 @@ public class User implements Serializable {
     @Column(name="password",nullable = false)
     private String password;
 
+    @JsonIgnore
     @Column(name="is_active", nullable = false)
     private Boolean isActive;
 
